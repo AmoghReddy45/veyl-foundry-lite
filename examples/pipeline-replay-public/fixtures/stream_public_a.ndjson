@@ -1,0 +1,4 @@
+{"account_id":"acct_orion","arrived_at":"2026-02-03T00:00:00Z","effective_at":"2026-02-01T00:00:00Z","event_id":"p-orion-growth","event_type":"plan_change","plan":"growth","schema_version":"2026-02"}
+{"account_id":"acct_orion","arrived_at":"2026-02-02T01:01:00Z","event_id":"u-orion-api-old","occurred_at":"2026-02-02T01:00:00Z","schema_version":"2026-01","service":"api_call","type":"usage","units":100}
+{"account_id":"acct_orion","arrived_at":"2026-02-05T00:00:00Z","event_id":"u-orion-storage","event_time":"2026-02-02T02:00:00Z","event_type":"usage","quantity":5,"schema_version":"2026-02","service":"storage_gb_day"}
+{"arrived_at":"2026-02-06T00:01:00Z","corrected_quantity":3,"event_id":"c-orion-storage","event_time":"2026-02-06T00:00:00Z","event_type":"correction","schema_version":"2026-02","target_event_id":"u-orion-storage"}

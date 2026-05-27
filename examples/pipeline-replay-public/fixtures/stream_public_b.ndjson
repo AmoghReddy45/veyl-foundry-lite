@@ -1,0 +1,5 @@
+{"account_id":"acct_orion","arrived_at":"2026-02-02T01:01:00Z","event_id":"u-orion-api-old","occurred_at":"2026-02-02T01:00:00Z","schema_version":"2026-01","service":"api_call","type":"usage","units":100}
+{"account_id":"acct_orion","arrived_at":"2026-02-02T03:01:00Z","event_id":"u-orion-seat","occurred_at":"2026-02-02T03:00:00Z","schema_version":"2026-01","service":"seat_day","type":"usage","units":1}
+{"arrived_at":"2026-02-06T00:02:00Z","event_id":"t-orion-seat","occurred_at":"2026-02-06T00:00:00Z","schema_version":"2026-01","target_event_id":"u-orion-seat","type":"tombstone"}
+{"account_id":"acct_nova","arrived_at":"2026-02-04T00:00:00Z","effective_at":"2026-01-31T00:00:00Z","event_id":"p-nova-enterprise","plan":"enterprise","schema_version":"2026-01","type":"plan_change"}
+{"account_id":"acct_nova","arrived_at":"2026-02-04T00:05:00Z","event_id":"u-nova-storage","occurred_at":"2026-02-02T05:00:00Z","schema_version":"2026-01","service":"storage_gb_day","type":"usage","units":2}

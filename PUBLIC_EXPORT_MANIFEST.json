@@ -1,0 +1,28 @@
+{
+  "exports": [
+    {
+      "destination": "README.md",
+      "source": "README.public.md"
+    },
+    {
+      "destination": "pyproject.toml",
+      "source": "pyproject.public.toml"
+    },
+    {
+      "destination": "docs",
+      "source": "docs/public"
+    },
+    {
+      "destination": "foundry_lite",
+      "source": "foundry_lite"
+    },
+    {
+      "destination": "examples/pipeline-replay-public",
+      "source": "examples/pipeline-replay-public"
+    }
+  ],
+  "generated_at": "2026-05-27T02:06:20.469156Z",
+  "policy": "explicit-allowlist",
+  "source_branch": "codex/public-facing-export",
+  "source_commit": "c2b54474f49e3807cc84085816097e13c11bd905"
+}

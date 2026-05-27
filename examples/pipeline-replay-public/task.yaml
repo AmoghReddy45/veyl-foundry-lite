@@ -1,0 +1,21 @@
+schema_version: public-0.1
+id: veyl_public_pipeline_replay_sample
+domain: software_engineering
+environment_type: repo
+difficulty: medium
+workspace: workspace
+task_prompt: >
+  Repair the deterministic billing replay CLI in workspace/pipeline_replay.py.
+  The CLI reads one or more NDJSON event streams and writes ledger.jsonl,
+  invoice.jsonl, and audit.jsonl. Rebuild canonical billing state from all input
+  rows rather than trusting arrival or file order. Handle duplicate IDs,
+  effective-time plan changes, corrections, tombstones, late arrivals, and
+  deterministic JSONL output with sorted keys.
+public_checks:
+  - python3 public_tests/pipeline_replay_public_check.py
+metadata:
+  tags:
+    - swe
+    - billing
+    - deterministic-replay
+  note: This is a visible public sample, not the internal flagship grader.

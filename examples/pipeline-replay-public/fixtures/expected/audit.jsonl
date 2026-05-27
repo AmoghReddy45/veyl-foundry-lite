@@ -1,0 +1,7 @@
+{"event_id":"c-orion-storage","from_units":5,"kind":"correction_applied","target_event_id":"u-orion-storage","to_units":3}
+{"duplicate_count":1,"event_id":"u-orion-api-old","kind":"duplicate_ignored"}
+{"arrival_date":"2026-02-04","bill_date":"2026-02-02","event_id":"u-nova-storage","kind":"late_arrival","lag_days":2}
+{"arrival_date":"2026-02-05","bill_date":"2026-02-02","event_id":"u-orion-storage","kind":"late_arrival","lag_days":3}
+{"account_id":"acct_nova","effective_date":"2026-01-31","event_id":"p-nova-enterprise","kind":"plan_change_applied","plan":"enterprise"}
+{"account_id":"acct_orion","effective_date":"2026-02-01","event_id":"p-orion-growth","kind":"plan_change_applied","plan":"growth"}
+{"event_id":"t-orion-seat","kind":"tombstone_applied","target_event_id":"u-orion-seat"}

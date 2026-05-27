@@ -1,0 +1,12 @@
+[project]
+name = "veyl-foundry-lite"
+version = "0.1.0"
+description = "Public runnable sample for Veyl Foundry."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "PyYAML>=6.0",
+]
+
+[project.scripts]
+foundry-lite = "foundry_lite.__main__:main"

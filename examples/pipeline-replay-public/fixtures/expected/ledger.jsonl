@@ -1,0 +1,3 @@
+{"account_id":"acct_nova","bill_date":"2026-02-02","events":["u-nova-storage"],"gross_cents":20,"plan":"enterprise","service":"storage_gb_day","units":2}
+{"account_id":"acct_orion","bill_date":"2026-02-02","events":["u-orion-api-old"],"gross_cents":100,"plan":"growth","service":"api_call","units":100}
+{"account_id":"acct_orion","bill_date":"2026-02-02","events":["u-orion-storage"],"gross_cents":36,"plan":"growth","service":"storage_gb_day","units":3}
