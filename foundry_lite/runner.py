@@ -14,28 +14,38 @@ from .schema import PublicTask
 
 @dataclass(frozen=True)
 class LiteRunResult:
-    run_dir: Path
+    session_dir: Path
     passed: bool
     expected_failure: bool
     events: list[dict[str, Any]]
 
 
-def run_task(
+def execute_task(
     task: PublicTask,
     output: str | Path,
     *,
     command: str | None = None,
     expect_fail: bool = False,
+    use_public_solution: bool = False,
 ) -> LiteRunResult:
-    run_dir = Path(output).resolve()
-    if run_dir.exists():
-        shutil.rmtree(run_dir)
-    run_dir.mkdir(parents=True)
-    workspace = run_dir / "workspace"
+    session_dir = Path(output).resolve()
+    if session_dir.exists():
+        shutil.rmtree(session_dir)
+    session_dir.mkdir(parents=True)
+    workspace = session_dir / "workspace"
     shutil.copytree(task.workspace_dir, workspace)
 
     events: list[dict[str, Any]] = []
-    add_event(events, "run.start", task_id=task.task_id, workspace=str(workspace))
+    add_event(events, "session.start", task_id=task.task_id, workspace=str(workspace))
+
+    if use_public_solution:
+        if not task.public_solution:
+            raise ValueError(f"{task.task_id} does not define a public solution")
+        solution_path = task.root / task.public_solution
+        if not solution_path.exists():
+            raise FileNotFoundError(solution_path)
+        shutil.copy2(solution_path, workspace / "pipeline_replay.py")
+        add_event(events, "solution.applied", source=task.public_solution)
 
     env = os.environ.copy()
     env["FOUNDRY_WORKSPACE"] = str(workspace)
@@ -83,13 +93,13 @@ def run_task(
         )
 
     passed = all(check_results)
-    add_event(events, "run.finish", passed=passed, expected_failure=expect_fail)
-    write_run_log(run_dir, task, passed, expect_fail, events)
-    latest = run_dir.parent / "latest"
+    add_event(events, "session.finish", passed=passed, expected_failure=expect_fail)
+    write_log(session_dir, task, passed, expect_fail, events)
+    latest = session_dir.parent / "latest"
     if latest.exists() or latest.is_symlink():
         latest.unlink()
-    latest.symlink_to(run_dir, target_is_directory=True)
-    return LiteRunResult(run_dir=run_dir, passed=passed, expected_failure=expect_fail, events=events)
+    latest.symlink_to(session_dir, target_is_directory=True)
+    return LiteRunResult(session_dir=session_dir, passed=passed, expected_failure=expect_fail, events=events)
 
 
 def add_event(events: list[dict[str, Any]], event_type: str, **fields: Any) -> None:
@@ -100,8 +110,8 @@ def now() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
-def write_run_log(
-    run_dir: Path,
+def write_log(
+    session_dir: Path,
     task: PublicTask,
     passed: bool,
     expect_fail: bool,
@@ -113,7 +123,7 @@ def write_run_log(
         "expected_failure": expect_fail,
         "events": events,
     }
-    (run_dir / "run_log.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    (session_dir / "log.json").write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def tail(value: str, limit: int = 1200) -> str:
@@ -122,8 +132,8 @@ def tail(value: str, limit: int = 1200) -> str:
     return value[-limit:]
 
 
-def replay(run_dir: str | Path) -> str:
-    path = Path(run_dir).resolve() / "run_log.json"
+def replay(session: str | Path) -> str:
+    path = Path(session).resolve() / "log.json"
     payload = json.loads(path.read_text(encoding="utf-8"))
     lines = [f"task={payload['task_id']} passed={payload['passed']} expected_failure={payload['expected_failure']}"]
     for event in payload["events"]:

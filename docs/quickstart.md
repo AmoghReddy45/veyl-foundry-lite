@@ -1,6 +1,6 @@
 # Quickstart
 
-Run the public sample:
+Run the public sample's starter check:
 
 ```bash
 python3 -m foundry_lite run --task examples/pipeline-replay-public --expect-fail
@@ -8,6 +8,15 @@ python3 -m foundry_lite run --task examples/pipeline-replay-public --expect-fail
 
 That command should pass because the starter implementation is intentionally
 incomplete and should fail the visible public checks.
+
+Run the public-only passing implementation:
+
+```bash
+python3 -m foundry_lite run --task examples/pipeline-replay-public --use-public-solution
+```
+
+That command should pass because it applies a simple implementation built only
+for this visible sample.
 
 To solve it, repair:
 

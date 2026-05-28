@@ -13,6 +13,7 @@ task_prompt: >
   deterministic JSONL output with sorted keys.
 public_checks:
   - python3 public_tests/pipeline_replay_public_check.py
+public_solution: public_solution/pipeline_replay.py
 metadata:
   tags:
     - swe

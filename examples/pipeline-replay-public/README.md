@@ -12,6 +12,12 @@ Run the expected-failure check:
 python3 -m foundry_lite run --task examples/pipeline-replay-public --expect-fail
 ```
 
+Run the public-only passing implementation:
+
+```bash
+python3 -m foundry_lite run --task examples/pipeline-replay-public --use-public-solution
+```
+
 Then repair:
 
 ```text

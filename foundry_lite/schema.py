@@ -14,6 +14,7 @@ class PublicTask:
     prompt: str
     workspace: str
     public_checks: tuple[str, ...]
+    public_solution: str | None
     metadata: dict[str, Any]
 
     @property
@@ -38,5 +39,6 @@ def load_task(path: str | Path) -> PublicTask:
         prompt=str(data["task_prompt"]),
         workspace=str(workspace),
         public_checks=tuple(str(command) for command in checks),
+        public_solution=str(data["public_solution"]) if data.get("public_solution") else None,
         metadata=dict(data.get("metadata") or {}),
     )

@@ -21,7 +21,7 @@ def read_jsonl(path: Path) -> list[dict[str, object]]:
 
 
 class PublicPipelineReplayTest(unittest.TestCase):
-    def run_cli(self, root: Path, input_names: tuple[str, ...], output_name: str) -> Path:
+    def execute_cli(self, root: Path, input_names: tuple[str, ...], output_name: str) -> Path:
         output = root / output_name
         cmd = [sys.executable, str(CLI)]
         for name in input_names:
@@ -33,7 +33,7 @@ class PublicPipelineReplayTest(unittest.TestCase):
 
     def test_public_outputs_match_expected_artifacts(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
-            output = self.run_cli(
+            output = self.execute_cli(
                 Path(tmp),
                 ("stream_public_a.ndjson", "stream_public_b.ndjson"),
                 "out",
@@ -48,8 +48,8 @@ class PublicPipelineReplayTest(unittest.TestCase):
     def test_replay_is_stable_when_input_order_changes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
-            first = self.run_cli(root, ("stream_public_a.ndjson", "stream_public_b.ndjson"), "first")
-            reversed_order = self.run_cli(root, ("stream_public_b.ndjson", "stream_public_a.ndjson"), "reversed")
+            first = self.execute_cli(root, ("stream_public_a.ndjson", "stream_public_b.ndjson"), "first")
+            reversed_order = self.execute_cli(root, ("stream_public_b.ndjson", "stream_public_a.ndjson"), "reversed")
             for name in ("ledger.jsonl", "invoice.jsonl", "audit.jsonl"):
                 with self.subTest(name=name):
                     self.assertEqual(
@@ -59,7 +59,7 @@ class PublicPipelineReplayTest(unittest.TestCase):
 
     def test_invoice_totals_match_ledger_lines(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
-            output = self.run_cli(
+            output = self.execute_cli(
                 Path(tmp),
                 ("stream_public_a.ndjson", "stream_public_b.ndjson"),
                 "out",

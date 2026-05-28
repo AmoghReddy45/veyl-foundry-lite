@@ -17,15 +17,22 @@ systems:
 - emit stable JSONL artifacts.
 
 The starter code is deliberately incomplete. It trusts arrival order and misses
-several state semantics. That makes the sample useful as a visible public
-challenge without disclosing the private flagship checks.
+several state semantics. The public repo also includes a public-only passing
+implementation so reviewers can see both sides of the loop:
+
+```text
+starter -> fails visible checks
+public implementation -> passes visible checks
+```
+
+That makes the sample useful as a visible public challenge without disclosing
+the private flagship checks.
 
 ## Why This Matters
 
 Agent-generated code can look correct while missing production contracts. The
-internal flagship demonstrated this: one strong coding agent produced a
-plausible but incomplete replay repair, while another passed the same private
-grader.
+internal flagship demonstrated this contrast with private model attempts, while
+this public sample keeps the details sanitized.
 
 The public sample exposes a small version of that failure family so reviewers
 can inspect and run the idea locally.

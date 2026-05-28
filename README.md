@@ -17,16 +17,27 @@ operations.
 - Public docs describing the Alpha Core, security model, and private corpus
   boundary.
 
-## Quickstart
+## Quickstart: fail, then pass
 
 The starter sample is intentionally incomplete. This command succeeds when the
-starter fails the public checks:
+starter fails the public checks, which demonstrates Foundry Lite catching an
+incorrect implementation:
 
 ```bash
 python3 -m foundry_lite run --task examples/pipeline-replay-public --expect-fail
 ```
 
-After repairing the sample workspace, run:
+Then run the public-only passing implementation:
+
+```bash
+python3 -m foundry_lite run --task examples/pipeline-replay-public --use-public-solution
+```
+
+That second command demonstrates Foundry Lite recognizing a correct repair for
+the simplified public sample. Passing this public sample does not imply passing
+Veyl's private evaluations.
+
+After repairing the sample workspace yourself, run:
 
 ```bash
 python3 -m foundry_lite run --task examples/pipeline-replay-public
@@ -38,7 +49,7 @@ Export a public eval artifact:
 python3 -m foundry_lite export --task examples/pipeline-replay-public --output out/pipeline_replay_eval.json
 ```
 
-Replay the last run log:
+Replay the latest log:
 
 ```bash
 python3 -m foundry_lite replay --run out/latest
@@ -48,4 +59,4 @@ python3 -m foundry_lite replay --run out/latest
 
 This mirror demonstrates the shape of Foundry. The valuable private assets stay
 in the private repo: the full task pack, private grading material, challenge
-probes, model traces, and advisor-only proof material.
+probes, model attempts, and advisor-only proof material.

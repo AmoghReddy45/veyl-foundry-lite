@@ -21,9 +21,9 @@ The public mirror excludes:
 
 - the full private task corpus;
 - private grading material;
-- solution patches;
+- private solution material;
 - probe patches;
-- full run logs and model traces;
+- full model logs;
 - provider command templates;
 - evaluator operations.
 

@@ -21,8 +21,8 @@
       "source": "examples/pipeline-replay-public"
     }
   ],
-  "generated_at": "2026-05-27T02:06:20.469156Z",
+  "generated_at": "2026-05-28T00:55:53.315209Z",
   "policy": "explicit-allowlist",
-  "source_branch": "codex/public-facing-export",
-  "source_commit": "c2b54474f49e3807cc84085816097e13c11bd905"
+  "source_branch": "public-lite-passpath",
+  "source_commit": "113a7b322dc13b0071614b64578513a2ae3d9e66"
 }
