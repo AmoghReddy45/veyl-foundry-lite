@@ -5,13 +5,19 @@ software-engineering agent environments.
 
 The private Alpha Core has:
 
-- 34 Dockerized SWE tasks;
+- a base of hand-authored Dockerized SWE tasks, extended with generated breadth
+  and a growing set of **real human-sourced repository bug-fix tasks**;
 - a public/private runtime split for solve and grade phases;
-- hidden behavior grading;
+- hidden behavior grading, reproduced-environment grading for real tasks, and
+  reference-equivalence (golden-output) grading;
 - challenge probes that must fail;
 - reference fixes that must pass;
+- differential verification by a separate-provider solver, with every attempt
+  captured and difficulty reported as a pass rate across repeated attempts;
 - run persistence and replay;
-- eval and SFT export paths;
+- eval and training-environment export paths (one validated task serves both);
+- domain packs that tag tasks by industry and failure area and render their own
+  evidence from committed metadata;
 - hardening checks for leakage and task quality.
 
 This public mirror includes only a small runnable slice. It is not the private

@@ -11,5 +11,8 @@ That split is deliberate:
 - technical advisors can understand the system shape;
 - private evaluation value is not copied into a public Git history.
 
-The next public milestone should add more polished examples only after the
-five-task evidence pack is complete and reviewed.
+The private corpus carries the real-task evidence — including human-sourced bugs
+on which a separate-provider frontier model, given only the public problem, did
+not produce a passing fix across repeated independent attempts. Those tasks, their
+graders, and their full attempt logs stay private; this mirror documents the
+methodology and shape, not the corpus.
