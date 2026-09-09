@@ -1,41 +1,32 @@
-# Alpha Core Summary
+# Foundry background and current scope
 
-Veyl Foundry Alpha Core is a local backend spine for building and evaluating
-software-engineering agent environments.
+Foundry Alpha Core was Veyl's early environment and evaluation infrastructure for
+software-engineering tasks. Task authoring, behavior checks, repeated execution,
+evidence storage, and export helped establish the evaluation discipline behind
+the later reliability product.
 
-The private Alpha Core has:
+Veyl's current product context is described in the
+[product overview](product_overview.md). Earlier descriptions of task packs,
+grading modes, or internal corpus size are historical context, not a feature
+list for the code in this repository.
 
-- a base of hand-authored Dockerized SWE tasks, extended with generated breadth
-  and a growing set of **real human-sourced repository bug-fix tasks**;
-- a public/private runtime split for solve and grade phases;
-- hidden behavior grading, reproduced-environment grading for real tasks, and
-  reference-equivalence (golden-output) grading;
-- challenge probes that must fail;
-- reference fixes that must pass;
-- differential verification by a separate-provider solver, with every attempt
-  captured and difficulty reported as a pass rate across repeated attempts;
-- run persistence and replay;
-- eval and training-environment export paths (one validated task serves both);
-- domain packs that tag tasks by industry and failure area and render their own
-  evidence from committed metadata;
-- hardening checks for leakage and task quality.
+## What Foundry Lite implements
 
-This public mirror includes only a small runnable slice. It is not the private
-task pack and not a hosted product.
+1. Load a `public-0.1` task definition.
+2. Copy its workspace to a local output directory.
+3. Optionally execute a command or apply the included public implementation.
+4. Run the visible checks and record their results.
+5. Display the saved event log.
+6. Export public task metadata as an evaluation payload.
 
-## What The Public Mirror Proves
+The public sample contains all its visible checks and fixtures. Private grading,
+managed deployment, multi-provider experiments, and customer operating controls
+are outside this package.
 
-The mirror proves that the Foundry loop can be explained and used locally:
+## How to evaluate the public material
 
-1. Load a task.
-2. Copy its workspace into a run directory.
-3. Execute visible public checks.
-4. Persist a run log.
-5. Replay the log.
-6. Export a safe eval payload.
-
-## What It Does Not Prove
-
-The mirror does not prove broad benchmark quality, customer deployment, or
-frontier-model performance. Those claims depend on private validation and
-advisor-reviewed evidence.
+Run the [quickstart](quickstart.md), inspect the
+[sample contract](flagship_pipeline_replay_public.md), and read the separate
+[published studies](public_evidence.md). A working local example is evidence of
+the mechanics it implements, not a production deployment or a general claim
+about model performance.

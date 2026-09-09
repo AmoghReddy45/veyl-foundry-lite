@@ -1,34 +1,39 @@
-# Security Model
+# Security and execution boundaries
 
-This public mirror is generated through an explicit allowlist. The private repo
-is canonical; the public mirror is a derived artifact.
+## Foundry Lite runs on your machine
 
-Allowed export sources:
+Lite copies the example workspace, runs its configured checks as local shell
+commands, and saves an event log. An optional `--command` also runs locally.
+These processes inherit your user's permissions and environment. The copied
+workspace is not an isolation boundary.
 
-- `README.public.md`
-- `pyproject.public.toml`
-- `docs/public`
-- `foundry_lite`
-- `examples/pipeline-replay-public`
-- `LICENSE` when present
+Use trusted task definitions and code. The included Dockerfile describes the
+example environment; the Lite runner does not start Docker or enforce a
+container boundary. It does not restrict filesystem access or network access.
 
-The exporter scans the generated mirror for forbidden private markers and fails
-if any are found.
+The selected `--output` directory is replaced on each run. Use a dedicated
+directory such as `out/starter`, never a directory containing work you need to
+keep. Local logs can contain command output and paths; inspect them before sharing.
 
-## Excluded Material
+## Public release scope
 
-The public mirror excludes:
+The runnable package originates from an explicit allowlist: the public README,
+package metadata, public docs, Lite runner, and public example. Documentation is
+maintained against the released code and published Veyl product pages.
+`PUBLIC_EXPORT_MANIFEST.json` records the original code export and subsequent
+documentation updates.
 
-- the full private task corpus;
-- private grading material;
-- private solution material;
-- probe patches;
-- full model logs;
-- provider command templates;
-- evaluator operations.
+Private implementation, grading material, internal experiments, customer
+information, and operational configuration are excluded. See the
+[public/private boundary](private_corpus_note.md).
 
-## Limitations
+## Managed product boundaries
 
-Foundry Lite is a local demonstration. It is not a hardened hosted sandbox and
-not a customer deployment surface. Treat it as a runnable proof of shape, not as
-production infrastructure.
+The managed product has a separate, engagement-specific execution and data
+boundary. Its controls are not provided by installing Foundry Lite. The public
+[security page](https://veyl.work/security) describes infrastructure options,
+provider disclosure, access, retention, and the current certification posture.
+
+For a security concern involving this repository, contact
+[amogh@veyl.work](mailto:amogh@veyl.work) without including sensitive data in a
+public issue.

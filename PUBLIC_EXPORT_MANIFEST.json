@@ -24,5 +24,24 @@
   "generated_at": "2026-06-15T17:07:36.187263Z",
   "policy": "explicit-allowlist",
   "source_branch": "main",
-  "source_commit": "15e0de68aeae994c477f130cb42b589af2bd1785"
+  "source_commit": "15e0de68aeae994c477f130cb42b589af2bd1785",
+  "export_provenance_note": "The source fields and generated_at identify the original runnable-code export. Documentation updates are recorded separately.",
+  "documentation_refresh": {
+    "updated_at": "2026-09-09T05:07:56.597580+00:00",
+    "scope": [
+      "README.md",
+      "docs",
+      "pyproject.toml description",
+      ".gitignore"
+    ],
+    "basis": "Released Foundry Lite code and published Veyl product pages",
+    "public_sources": [
+      "https://veyl.work/methodology",
+      "https://veyl.work/coding-agent-evaluation",
+      "https://veyl.work/private-ai",
+      "https://veyl.work/physical",
+      "https://veyl.work/evidence",
+      "https://veyl.work/security"
+    ]
+  }
 }
